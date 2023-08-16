@@ -37,7 +37,7 @@ try {
     try {
       const {data} = await axios.get('https://crudbackend-5qnk.onrender.com/')
       setTasks(data)
-  
+      console.log(data);
     } catch (error) {
       console.log(error)
     }
@@ -53,15 +53,14 @@ try {
       const updatedTasks = tasks.filter((tasks) => tasks._id !== id)
       setTasks(updatedTasks)
       toast.success('task deleted successfully')
-     
+     getAllTask()
     } catch (error) {
       // console.log(error)
       toast.error('task was not deleted')
     }
   }
-  useEffect(() =>{
-    getAllTask()
-  },[]);
+
+  
   // const updateTaskById = async(id,updateTask) =>{
   //   try {
   //     const {data} = await axios.patch(`http://localhost:7000/api/tasks/${id}`,updateTask)
@@ -106,9 +105,6 @@ try {
       toast.error('not updated')
     }   
   }
-  useEffect(() =>{
-    getAllTask()
-  },[])
   return (
     <div>
        <h1 className='--center-all --text-purple'>MANAGER</h1> 
@@ -120,19 +116,23 @@ try {
             <b>Completed Tasks:</b> 0
           </h3>
         </div>
-       {
-        tasks.map((data,index) =>
-         (
-          <Task 
-            tasks={data}
-             key={data._id} 
-             index ={index} 
-             deleteTask={deleteTask}
-           getSingleTask={getSingleTask}
-             updateTaskById={updateTaskById}
-             />
-             ))
-       } 
+        {
+  Array.isArray(tasks) ? (
+    tasks.map((data, index) => (
+      <Task
+        tasks={data}
+        key={data._id}
+        index={index}
+        deleteTask={deleteTask}
+        getSingleTask={getSingleTask}
+        updateTaskById={updateTaskById}
+      />
+    ))
+  ) : (
+    <p>No tasks available.</p>
+  )
+}
+
        <Form handleInputChange={handleInputChange} createTask={createTask} name={name} />
     </div>
   )
