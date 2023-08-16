@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Task.css'
 
 
 const Form = ({createTask,name,handleInputChange}) => {
-
-  
   return (
     <form className='task-form' onSubmit={createTask}>
         <input
