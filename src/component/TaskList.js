@@ -91,7 +91,7 @@ try {
   }
   const updateTaskById = async(e) =>{
     e.preventDefault()
-    if (name == "") {
+    if (name === "") {
       return alert("input field cant be empty")
     }
     try {
@@ -134,7 +134,6 @@ try {
              ))
        } 
        <Form handleInputChange={handleInputChange} createTask={createTask} name={name} />
-      
     </div>
   )
 }
