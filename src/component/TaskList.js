@@ -37,7 +37,7 @@ try {
     try {
       const {data} = await axios.get('https://crudbackend-5qnk.onrender.com/')
       setTasks(data)
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error)
     }
