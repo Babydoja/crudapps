@@ -22,7 +22,7 @@ const [tasks, setTasks] = useState([])
 const createTask = async(e) =>{
     e.preventDefault()
 try {
-    await axios.post('https://crudbackend-5qnk.onrender.com/',formData)
+    await axios.post('https://crudbackend-5qnk.onrender.com',formData)
   toast.success("Task create successful")
     // console.log(formData)
     getAllTask()
@@ -35,7 +35,7 @@ try {
   // getting all task 
   const getAllTask = async() =>{
     try {
-      const {data} = await axios.get('https://crudbackend-5qnk.onrender.com/')
+      const {data} = await axios.get('https://crudbackend-5qnk.onrender.com')
       setTasks(data)
       // console.log(data);
     } catch (error) {
@@ -48,7 +48,7 @@ try {
 // to delete task 
   const deleteTask = async(id) =>{
     try {
-     await axios.delete(`https://crudbackend-5qnk.onrender.com/${id}`);
+     await axios.delete(`https://crudbackend-5qnk.onrender.com${id}`);
       // setTasks(data)
       const updatedTasks = tasks.filter((tasks) => tasks._id !== id)
       setTasks(updatedTasks)
@@ -94,7 +94,7 @@ try {
       return alert("input field cant be empty")
     }
     try {
-       await axios.patch(`https://crudbackend-5qnk.onrender.com/${taskID}`,formData)
+       await axios.patch(`https://crudbackend-5qnk.onrender.com${taskID}`,formData)
        setFormData({...formData,name:""})
        setIsEditing(false)
        getAllTask()
