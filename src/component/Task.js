@@ -8,20 +8,14 @@ const Task = ({tasks,index,deleteTask,getSingleTask}) => {
  
   return (
     <div className='task' >
-        <p>{index+1} {' '}
-        
+        <p>{index+1} 
          <b>{tasks.name}</b>
-        
          </p>
         <div className='task-icons'>
-        
             <MdEditNote onClick={getSingleTask} />
             
-            <MdOutlineDeleteForever  onClick={() => deleteTask(tasks._id)} />
-           
-            
-        </div>
-       
+            <MdOutlineDeleteForever  onClick={() => deleteTask(tasks._id)} />   
+        </div> 
     </div>
   )
 }
