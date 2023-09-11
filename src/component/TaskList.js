@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
 const TaskList = () => {
   const [formData, setFormData] = useState({name:''})
   const {name}=formData 
-  const [IsEditing, setIsEditing] = useState(false)
+  const [IsEditing, setEditing] = useState(false)
   const [taskID, setTaskID] = useState("")
   const URL ="https://crudbackend-5qnk.onrender.com"
   // creating task 
@@ -77,35 +77,54 @@ try {
   // useEffect(() =>{
   //   getAllTask()
   // },[])
-    const getSingleTask = async(task) =>{
-    try {
-      setFormData({name:task.name})
-      setIsEditing(true)
-      setTaskID(task._id)
-      toast.success('updated succefully')
-    } 
-    catch (error) {
-      console.log(error)
-      toast.error('not updated')
-    }   
+  const get_singleTask = async (task) =>{
+    setFormData({name: task.name});
+    setTaskID(task._id);
+    setEditing(true)
+
+ }
+ const update_Task = async (e) =>{
+  // e.preventDefault()
+  try {
+    await axios.put(
+      `${URL}/api/tasks/${taskID}`, formData
+    )
+  setFormData({...formData, name:""})
+ 
+  getAllTask()
+  } catch (error) {
+    alert(error.message)
   }
-  const updateTaskById = async(e) =>{
-    e.preventDefault()
-    if (name === "") {
-      return alert("input field cant be empty")
-    }
-    try {
-       await axios.patch(`${URL}/api/tasks/${taskID}`,formData)
-       setFormData({...formData,name:""})
-       setIsEditing(false)
-       getAllTask()
-      toast.success('updated succefully')
-    } 
-    catch (error) {
-      console.log(error)
-      toast.error('not updated')
-    }   
   }
+  //   const getSingleTask = async(task) =>{
+  //   try {
+  //     setFormData({name:task.name})
+  //     setIsEditing(true)
+  //     setTaskID(task._id)
+  //     toast.success('updated succefully')
+  //   } 
+  //   catch (error) {
+  //     console.log(error)
+  //     toast.error('not updated')
+  //   }   
+  // }
+  // const updateTaskById = async(e) =>{
+  //   e.preventDefault()
+  //   if (name === "") {
+  //     return alert("input field cant be empty")
+  //   }
+  //   try {
+  //      await axios.patch(`${URL}/api/tasks/${taskID}`,formData)
+  //      setFormData({...formData,name:""})
+  //      setIsEditing(false)
+  //      getAllTask()
+  //     toast.success('updated succefully')
+  //   } 
+  //   catch (error) {
+  //     console.log(error)
+  //     toast.error('not updated')
+  //   }   
+  // }
   return (
     <div>
        <h1 className='--center-all --text-purple'>MANAGER</h1> 
@@ -125,8 +144,8 @@ try {
         key={data._id}
         index={index}
         deleteTask={deleteTask}
-        getSingleTask={getSingleTask}
-        updateTaskById={updateTaskById}
+        get_singleTask={get_singleTask}
+       update_Task={update_Task}
       />
     ))
   ) : (
