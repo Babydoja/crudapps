@@ -4,7 +4,7 @@ import './Task.css'
 
 const Form = ({createTask,name,handleInputChange,editing,update_Task}) => {
   return (
-    <form className='task-form' onSubmit={editing?update_Task:createTask}>
+    <form className='task-form' onSubmit={editing ? update_Task : createTask}>
         <input
         type='text'
         placeholder="Add a Task"
