@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
 const TaskList = () => {
   const [formData, setFormData] = useState({name:''})
   const {name}=formData 
-  const [IsEditing, setEditing] = useState(false)
+  const [editing, setEditing] = useState(false)
   const [taskID, setTaskID] = useState("")
   const URL ="https://crudbackend-5qnk.onrender.com"
   // creating task 
@@ -77,25 +77,33 @@ try {
   // useEffect(() =>{
   //   getAllTask()
   // },[])
-  const get_singleTask = async (task) =>{
-    setFormData({name: task.name});
-    setTaskID(task._id);
+  const get_singleTask = async (tasks) =>{
+    setFormData({name: tasks.name});
+    setTaskID(tasks._id);
     setEditing(true)
-
  }
- const update_Task = async (e) =>{
+
+
+// update a task
+const update_Task = async (e) =>{
   // e.preventDefault()
+ 
   try {
     await axios.put(
       `${URL}/api/tasks/${taskID}`, formData
+      
     )
   setFormData({...formData, name:""})
- 
+  toast.success('task updated')
   getAllTask()
   } catch (error) {
-    alert(error.message)
+    // alert(error.message)
+    toast.error("not updated")
   }
   }
+
+//handle input change
+ 
   //   const getSingleTask = async(task) =>{
   //   try {
   //     setFormData({name:task.name})
