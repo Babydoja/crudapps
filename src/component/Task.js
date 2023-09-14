@@ -4,7 +4,7 @@ import './Task.css';
 import {MdOutlineDeleteForever,MdEditNote} from 'react-icons/md';
 
 
-const Task = ({tasks,index,deleteTask,get_singleTask}) => {
+const Task = ({tasks,index,deleteTask,getSingleTask}) => {
  
   return (
     <div className='task' >
@@ -12,7 +12,7 @@ const Task = ({tasks,index,deleteTask,get_singleTask}) => {
          <b>{tasks.name}</b>
          </p>
         <div className='task-icons'>
-            <MdEditNote onClick={() =>get_singleTask(tasks)} />
+            <MdEditNote onClick={() =>getSingleTask(tasks)} />
             
             <MdOutlineDeleteForever  onClick={() => deleteTask(tasks._id)} />   
         </div> 

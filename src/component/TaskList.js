@@ -77,7 +77,7 @@ try {
   // useEffect(() =>{
   //   getAllTask()
   // },[])
-  const get_singleTask = async (tasks) =>{
+  const getSingleTask = async (tasks) =>{
     setFormData({name: tasks.name});
     setTaskID(tasks._id);
     setEditing(true)
@@ -85,11 +85,11 @@ try {
 
 
 // update a task
-const update_Task = async (e) =>{
+const updateTask = async (e) =>{
   // e.preventDefault()
  
   try {
-    await axios.put(
+    await axios.patch(
       `${URL}/api/tasks/${taskID}`, formData
       
     )
@@ -152,8 +152,8 @@ const update_Task = async (e) =>{
         key={data._id}
         index={index}
         deleteTask={deleteTask}
-        get_singleTask={get_singleTask}
-       update_Task={update_Task}
+        getSingleTask={getSingleTask}
+        updateTask={updateTask}
       />
     ))
   ) : (
