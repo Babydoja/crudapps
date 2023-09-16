@@ -61,22 +61,7 @@ try {
     }
   }
 
-  
-  // const updateTaskById = async(id,updateTask) =>{
-  //   try {
-  //     const {data} = await axios.patch(`http://localhost:7000/api/tasks/${id}`,updateTask)
-  //     setTasks(data)
-  //     console.log(data);
-  //     toast.success('updated succefully')
-  //   } 
-  //   catch (error) {
-  //     console.log(error)
-  //     toast.error('not updated')
-  //   }   
-  // }
-  // useEffect(() =>{
-  //   getAllTask()
-  // },[])
+
   const getSingleTask = async (tasks) =>{
     setFormData({name: tasks.name});
     setTaskID(tasks._id);
@@ -89,7 +74,7 @@ const updateTask = async (e) =>{
   // e.preventDefault()
  
   try {
-    await axios.patch(
+    await axios.put(
       `${URL}/api/tasks/${taskID}`, formData
       
     )
@@ -102,37 +87,7 @@ const updateTask = async (e) =>{
   }
   }
 
-//handle input change
- 
-  //   const getSingleTask = async(task) =>{
-  //   try {
-  //     setFormData({name:task.name})
-  //     setIsEditing(true)
-  //     setTaskID(task._id)
-  //     toast.success('updated succefully')
-  //   } 
-  //   catch (error) {
-  //     console.log(error)
-  //     toast.error('not updated')
-  //   }   
-  // }
-  // const updateTaskById = async(e) =>{
-  //   e.preventDefault()
-  //   if (name === "") {
-  //     return alert("input field cant be empty")
-  //   }
-  //   try {
-  //      await axios.patch(`${URL}/api/tasks/${taskID}`,formData)
-  //      setFormData({...formData,name:""})
-  //      setIsEditing(false)
-  //      getAllTask()
-  //     toast.success('updated succefully')
-  //   } 
-  //   catch (error) {
-  //     console.log(error)
-  //     toast.error('not updated')
-  //   }   
-  // }
+
   return (
     <div>
        <h1 className='--center-all --text-purple'>MANAGER</h1> 
