@@ -5,6 +5,8 @@ import axios from 'axios'
 import {URL} from '../App'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import loadingIMG from './assets/loading.gif'
+const [isLoading, setIsLoading] = useState(false);
 
 const TaskList = () => {
   const [formData, setFormData] = useState({name:''})
@@ -100,6 +102,16 @@ const updateTask = async (e) =>{
           </h3>
         </div>
         {
+          isLoading &&(
+            <div className='--flex-center'>
+              <img src={loadingIMG}/>
+            </div>
+          )
+        }
+        {
+          !isLoading && tasks.length === 0 ? (
+            <p >No Task Found, Add  A Task </p>
+          ):(<>{
   Array.isArray(tasks) ? (
     tasks.map((data, index) => (
       <Task
@@ -114,8 +126,8 @@ const updateTask = async (e) =>{
   ) : (
     <p>No tasks available.</p>
   )
-}
-
+}</>)
+        }
        <Form handleInputChange={handleInputChange} createTask={createTask} name={name} />
     </div>
   )
