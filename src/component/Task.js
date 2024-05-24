@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import './Task.css';
 
 import {MdOutlineDeleteForever,MdEditNote} from 'react-icons/md';
-
-
 const Task = ({tasks,index,deleteTask,getSingleTask}) => {
  
   return (
